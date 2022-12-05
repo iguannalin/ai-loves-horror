@@ -91,15 +91,15 @@ function draw() {
         chindex++;
         drawGlitch();
         frameRate(random(20, frindex += 0.2));
-        if (choices.length < 0) {
-            push();
-                fill('#FFC107');
-                textSize(16);
-                textAlign(CENTER);
-                translate((width/2), height - 50);
-                text("\nThere are no choices.", 0, 0);
-            pop();
-        }
+    }
+    if (choices.length < 1) {
+        push();
+            fill('#FFC107');
+            textSize(16);
+            textAlign(CENTER);
+            translate((width/2), height - 50);
+            text("\nThere are no choices.", 0, 0);
+        pop();
     }
     // frameRate(100);
 }
@@ -121,7 +121,7 @@ function getAICompletion() {
         headers: {
             "Content-Type": "application/json",
             Authorization:
-                "Bearer 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",
+                "Bearer sess-QTLLs1UOLM752lCXVsLd1NSKrYaWeBtTuumGl5Ux",
         },
         body: JSON.stringify({
             model: "text-davinci-003",
@@ -173,7 +173,13 @@ function keyPressed() {
     // print(prompt);
     if (newPrompt) {
         storyText += "\n\n" + newPrompt + "\n";
-        redraw();
+        push();
+            fill('#FFC107');
+            textSize(16);
+            textAlign(CENTER);
+            translate((width/2), height - 75);
+            text(newPrompt, 0, 0);
+        pop();
         getAICompletion();
     }
 }
@@ -184,7 +190,7 @@ function getChoices(inText) {
     for (let i = 1; i < 4; i++) {
         if (spl[i]) choices[i] = spl[i];
     }
-    // print({ choices });
+    print({ choices });
 }
 
 function drawGlitch() {
