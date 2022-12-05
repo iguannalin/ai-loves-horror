@@ -72,7 +72,7 @@ function preload() {
     readmeButton.attribute("title", "Click to read more about this project.");
     readmeButton.class("ninetyfive-button");
     readmeButton.mousePressed(() => {
-        open("https://raw.githubusercontent.com/iguannalin/ai-loves-horror/main/README.md");
+        open("https://github.com/iguannalin/ai-loves-horror");
     });
 
     [saveButton, refreshButton, readmeButton].forEach((btn) => { btn.hide(); });
@@ -184,7 +184,6 @@ function keyPressed() {
     let newPrompt;
     if (isKeyPressed) return;
     isKeyPressed = true;
-    cboices = {};
     switch (keyCode) {
         case 49:
             if (choices[1]) newPrompt = choices[1];
@@ -215,6 +214,7 @@ function keyPressed() {
 
 function getChoices(inText) {
     if (!inText) return;
+    choices = {};
     let spl = inText.split(/\n[1-3][.]*/g);
     for (let i = 1; i < 4; i++) {
         if (spl[i]) choices[i] = spl[i];
