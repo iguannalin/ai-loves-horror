@@ -181,7 +181,6 @@ function windowResized() {
 function keyPressed() {
     let newPrompt;
     if (isLoading || isKeyPressed) return;
-    isKeyPressed = true;
     switch (keyCode) {
         case 49:
             if (choices[1]) newPrompt = choices[1];
@@ -198,6 +197,7 @@ function keyPressed() {
     }
     // print(prompt);
     if (newPrompt) {
+        isKeyPressed = true;
         storyText += "\n\n" + newPrompt + "\n";
         push();
             fill('#FFC107');
