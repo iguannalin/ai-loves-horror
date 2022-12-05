@@ -48,7 +48,6 @@ let isLoading = true;
 let isKeyPressed = false;
 let isTesting = false;
 let isGlitching = 7;
-let cnv;
 let saveButton, refreshButton, readmeButton;
 
 function preload() {
@@ -58,7 +57,7 @@ function preload() {
     saveButton.attribute("title", "Click to save adventure as image file.");
     saveButton.class("ninetyfive-button");
     saveButton.mousePressed(() => {
-        save(cnv, 'ai-loves-horror-portrait.jpg');
+        saveStrings(storyText.replace(prompt, "Type 1, 2, or 3 on the keyboard to continue the story.").split("/n"), 'ai-loves-horror-adventure.txt');
     });
 
     refreshButton = createImg("https://win98icons.alexmeub.com/icons/png/netmeeting-0.png", "refresh icon");
@@ -79,7 +78,7 @@ function preload() {
 }
 
 function setup() {
-    cnv = createCanvas(windowWidth, windowHeight);
+    createCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
@@ -113,14 +112,13 @@ function draw() {
         drawGlitch();
         frameRate(random(20, frindex += 0.2));
     }
-    if (!choices || isTesting) {
+    if (Object.keys(choices).length < 1 || isTesting) {
         push();
             fill('#FFC107');
             textSize(16);
             textAlign(CENTER);
             translate(width/2, height - 50);
             text("\nThere are no choices left.", 0, 0);
-            if (!isTesting) noLoop();
         pop();
         let btnX = 150;
         [saveButton, refreshButton, readmeButton].forEach((btn) => {
@@ -182,7 +180,7 @@ function windowResized() {
 
 function keyPressed() {
     let newPrompt;
-    if (isKeyPressed) return;
+    if (isLoading || isKeyPressed) return;
     isKeyPressed = true;
     switch (keyCode) {
         case 49:
