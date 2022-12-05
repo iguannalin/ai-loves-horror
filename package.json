@@ -13,7 +13,7 @@
   },
   "targets": {
     "default": {
-      "distDir": "./docs"
+      "distDir": "docs"
     }
   },
   "dependencies": {},

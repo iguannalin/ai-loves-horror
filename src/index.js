@@ -38,11 +38,7 @@ You call out for help, but the only response is a deep, menacing laugh from some
 Search the room for the source of the laugh
 You slowly move around the room, searching for the source of the laugh. You finally find it: a tall figure in a dark cloak standing in the corner of the room. 
 `;
-let choices = {
-    1: "",
-    2: "",
-    3: "",
-};
+let choices = {};
 let incoming;
 let storyText;
 let chindex = 1;
@@ -52,13 +48,38 @@ let isLoading = true;
 let isKeyPressed = false;
 let isTesting = false;
 let isGlitching = 7;
+let cnv;
+let saveButton, refreshButton, readmeButton;
 
 function preload() {
     getAICompletion();
+    // Windows icons from https://win98icons.alexmeub.com/
+    saveButton = createImg("https://win98icons.alexmeub.com/icons/png/printer-0.png", "printer icon");
+    saveButton.attribute("title", "Click to save adventure as image file.");
+    saveButton.class("ninetyfive-button");
+    saveButton.mousePressed(() => {
+        save(cnv, 'ai-loves-horror-portrait.jpg');
+    });
+
+    refreshButton = createImg("https://win98icons.alexmeub.com/icons/png/netmeeting-0.png", "refresh icon");
+    refreshButton.attribute("title", "Click to replay.");
+    refreshButton.class("ninetyfive-button");
+    refreshButton.mousePressed(() => {
+        location.reload();
+    });
+
+    readmeButton = createImg("https://win98icons.alexmeub.com/icons/png/file_question.png", "readme icon");
+    readmeButton.attribute("title", "Click to read more about this project.");
+    readmeButton.class("ninetyfive-button");
+    readmeButton.mousePressed(() => {
+        open("https://raw.githubusercontent.com/iguannalin/ai-loves-horror/main/README.md");
+    });
+
+    [saveButton, refreshButton, readmeButton].forEach((btn) => { btn.hide(); });
 }
 
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    cnv = createCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
@@ -67,7 +88,7 @@ function draw() {
             fill('#FFC107');
             textSize(16);
             textAlign(CENTER);
-            translate((width/2), height - 50);
+            translate(width/2, height - 50);
             text("Loading...", 0, 0);
         pop();
         return;
@@ -92,14 +113,21 @@ function draw() {
         drawGlitch();
         frameRate(random(20, frindex += 0.2));
     }
-    if (choices.length < 1) {
+    if (!choices || isTesting) {
         push();
             fill('#FFC107');
             textSize(16);
             textAlign(CENTER);
-            translate((width/2), height - 50);
-            text("\nThere are no choices.", 0, 0);
+            translate(width/2, height - 50);
+            text("\nThere are no choices left.", 0, 0);
+            if (!isTesting) noLoop();
         pop();
+        let btnX = 150;
+        [saveButton, refreshButton, readmeButton].forEach((btn) => {
+            btn.position((width/2) + btnX, height - 70);
+            btnX += 60;
+            btn.show();
+        });
     }
     // frameRate(100);
 }
@@ -156,6 +184,7 @@ function keyPressed() {
     let newPrompt;
     if (isKeyPressed) return;
     isKeyPressed = true;
+    cboices = {};
     switch (keyCode) {
         case 49:
             if (choices[1]) newPrompt = choices[1];
@@ -177,7 +206,7 @@ function keyPressed() {
             fill('#FFC107');
             textSize(16);
             textAlign(CENTER);
-            translate((width/2), height - 75);
+            translate(width/2, height - 75);
             text(newPrompt, 0, 0);
         pop();
         getAICompletion();
