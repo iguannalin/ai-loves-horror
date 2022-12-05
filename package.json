@@ -11,6 +11,11 @@
     "start": "parcel src/index.html",
     "build-prod": "parcel build src/index.html"
   },
+  "targets": {
+    "default": {
+      "distDir": "./docs"
+    }
+  },
   "dependencies": {},
   "devDependencies": {
     "parcel-bundler": "^1.12.5"
