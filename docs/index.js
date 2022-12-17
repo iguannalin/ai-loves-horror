@@ -6,7 +6,7 @@ let colors = {
     // overlay: '255, 255, 255, 0.3',
 };
 
-let size = {
+let textSize = {
     small: 20,
     regular: 24,
     large: 48
@@ -85,7 +85,7 @@ function preload() {
     readmeButton.attribute("title", "Click to read more about this project.");
     readmeButton.class("ninetyfive-button");
     readmeButton.mousePressed(() => {
-        open("https://github.com/iguannalin/ai-loves-horror");
+        open("https://iguannalin.github.io/ai-loves-horror/");
     });
 
     [saveButton, refreshButton, readmeButton].forEach((btn) => { btn.hide(); });
@@ -101,7 +101,7 @@ function draw() {
         background(colors.overlay);
         push();
             fill(colors.accent);
-            textSize(size.regular);
+            textSize(textSize.regular);
             textAlign(CENTER);
             translate(width/2, height - 50);
             text("Loading...", 0, 0);
@@ -121,7 +121,7 @@ function draw() {
     let story = storyText.replace(prompt, "Type 1, 2, or 3 on the keyboard to continue the story.");
     textWrap(WORD);
     textFont("Times New Roman");
-    textSize(size.large);
+    textSize(textSize.large);
     textAlign(LEFT, BOTTOM);
     text(story.substring(0, chindex), 60, 0, width > 600 ? pWidth : width - 60, pHeight);
     if (chindex < story.length) {
@@ -132,7 +132,7 @@ function draw() {
     if (Object.keys(choices).length < 1 || isTesting) {
         push();
             fill(colors.accent);
-            textSize(size.regular);
+            textSize(textSize.regular);
             textAlign(CENTER);
             translate(width/2, height - 70);
             text("\nThere are no choices left.", 0, 0);
@@ -141,7 +141,7 @@ function draw() {
         let btns = [saveButton, refreshButton, readmeButton];
         push();
             fill(colors.accent);
-            textSize(size.small);
+            textSize(textSize.small);
             textAlign(CENTER);
             for (let i = 0; i < 3; i++) {
                 let btn = btns[i];
@@ -226,7 +226,7 @@ function keyPressed() {
         storyText += "\n\n" + newPrompt + "\n";
         push();
             fill(colors.accent);
-            textSize(size.regular);
+            textSize(textSize.regular);
             textAlign(CENTER);
             translate(width/2, height - 75);
             text(newPrompt, 0, 0);
