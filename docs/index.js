@@ -1,3 +1,11 @@
+let colors = {
+    text: 'black',
+    accent: '#FFC107',
+    background: '#006F23',
+    overlay: 'rgba(0, 111, 35, 0.1)',
+    // overlay: '255, 255, 255, 0.3',
+};
+
 let prompt = "write a text-based horror adventure prompt, with 2-3 choices numbered";
 let test = `write a text-based horror adventure prompt, with 2-3 choices numbered
 
@@ -43,10 +51,9 @@ let incoming;
 let storyText;
 let chindex = 1;
 let frindex = 30;
-let padding;
 let isLoading = true;
 let isKeyPressed = false;
-let isTesting = false;
+let isTesting = true;
 let isGlitching = 7;
 let saveButton, refreshButton, readmeButton;
 
@@ -79,12 +86,14 @@ function preload() {
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
+    background(colors.background);
 }
 
 function draw() {
     if (!storyText || isLoading) {
+        background(colors.overlay);
         push();
-            fill('#FFC107');
+            fill(colors.accent);
             textSize(16);
             textAlign(CENTER);
             translate(width/2, height - 50);
@@ -92,12 +101,13 @@ function draw() {
         pop();
         return;
     }
-    if (random() > 0.75) {
-        background(255, 255, 255, 0.3);
-    } else {
-        clear();
+    if (random() > 0.45) { // random white overlay to make text blurred in background
+        background(colors.overlay);
+    } else { // otherwise clear canvas
+        // clear();
+        background(colors.background);
     }
-    fill('green');
+    fill(colors.text);
     let padding = width / 5;
     let pWidth = width - padding;
     let pHeight = height - padding;
@@ -114,7 +124,7 @@ function draw() {
     }
     if (Object.keys(choices).length < 1 || isTesting) {
         push();
-            fill('#FFC107');
+            fill(colors.accent);
             textSize(16);
             textAlign(CENTER);
             translate(width/2, height - 50);
@@ -147,7 +157,7 @@ function getAICompletion() {
         headers: {
             "Content-Type": "application/json",
             Authorization:
-                "Bearer sess-QTLLs1UOLM752lCXVsLd1NSKrYaWeBtTuumGl5Ux",
+                `Bearer ${process.env.GH_K}`,
         },
         body: JSON.stringify({
             model: "text-davinci-003",
@@ -200,7 +210,7 @@ function keyPressed() {
         isKeyPressed = true;
         storyText += "\n\n" + newPrompt + "\n";
         push();
-            fill('#FFC107');
+            fill(colors.accent);
             textSize(16);
             textAlign(CENTER);
             translate(width/2, height - 75);
