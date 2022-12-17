@@ -7,6 +7,7 @@ let colors = {
 };
 
 let size = {
+    small: 20,
     regular: 24,
     large: 48
 };
@@ -61,6 +62,7 @@ let isKeyPressed = false;
 let isTesting = true;
 let isGlitching = 7;
 let saveButton, refreshButton, readmeButton;
+let iconDescriptions = ["Save", "Replay", "About"];
 
 function preload() {
     getAICompletion();
@@ -125,7 +127,7 @@ function draw() {
     if (chindex < story.length) {
         chindex++;
         drawGlitch();
-        frameRate(random(20, frindex += 0.2));
+        frameRate(random(10, frindex += 0.2));
     }
     if (Object.keys(choices).length < 1 || isTesting) {
         push();
@@ -136,11 +138,19 @@ function draw() {
             text("\nThere are no choices left.", 0, 0);
         pop();
         let btnX = 150;
-        [saveButton, refreshButton, readmeButton].forEach((btn) => {
-            btn.position(((width*4)/5) + btnX, height + 110);
-            btnX += 60;
-            btn.show();
-        });
+        let btns = [saveButton, refreshButton, readmeButton];
+        push();
+            fill(colors.accent);
+            textSize(size.small);
+            textAlign(CENTER);
+            for (let i = 0; i < 3; i++) {
+                let btn = btns[i];
+                btn.position(((width*3)/5) + btnX, height - 100);
+                text(iconDescriptions[i], ((width*3)/5) + btnX + 10, height - 30);
+                btnX += 90;
+                btn.show();
+            }
+        pop();
     }
     // frameRate(100);
 }
