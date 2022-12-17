@@ -6,6 +6,11 @@ let colors = {
     // overlay: '255, 255, 255, 0.3',
 };
 
+let size = {
+    regular: 24,
+    large: 48
+};
+
 let prompt = "write a text-based horror adventure prompt, with 2-3 choices numbered";
 let test = `write a text-based horror adventure prompt, with 2-3 choices numbered
 
@@ -94,7 +99,7 @@ function draw() {
         background(colors.overlay);
         push();
             fill(colors.accent);
-            textSize(16);
+            textSize(size.regular);
             textAlign(CENTER);
             translate(width/2, height - 50);
             text("Loading...", 0, 0);
@@ -114,7 +119,7 @@ function draw() {
     let story = storyText.replace(prompt, "Type 1, 2, or 3 on the keyboard to continue the story.");
     textWrap(WORD);
     textFont("Times New Roman");
-    textSize(20);
+    textSize(size.large);
     textAlign(LEFT, BOTTOM);
     text(story.substring(0, chindex), 60, 0, width > 600 ? pWidth : width - 60, pHeight);
     if (chindex < story.length) {
@@ -125,14 +130,14 @@ function draw() {
     if (Object.keys(choices).length < 1 || isTesting) {
         push();
             fill(colors.accent);
-            textSize(16);
+            textSize(size.regular);
             textAlign(CENTER);
-            translate(width/2, height - 50);
+            translate(width/2, height - 70);
             text("\nThere are no choices left.", 0, 0);
         pop();
         let btnX = 150;
         [saveButton, refreshButton, readmeButton].forEach((btn) => {
-            btn.position((width/2) + btnX, height - 70);
+            btn.position(((width*4)/5) + btnX, height + 110);
             btnX += 60;
             btn.show();
         });
@@ -211,7 +216,7 @@ function keyPressed() {
         storyText += "\n\n" + newPrompt + "\n";
         push();
             fill(colors.accent);
-            textSize(16);
+            textSize(size.regular);
             textAlign(CENTER);
             translate(width/2, height - 75);
             text(newPrompt, 0, 0);
