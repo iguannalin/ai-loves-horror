@@ -59,7 +59,7 @@ let chindex = 1;
 let frindex = 30;
 let isLoading = true;
 let isKeyPressed = false;
-let isTesting = true;
+let isTesting = false;
 let isGlitching = 7;
 let saveButton, refreshButton, readmeButton;
 let iconDescriptions = ["Save", "Replay", "About"];
