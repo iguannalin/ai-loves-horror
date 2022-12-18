@@ -6,7 +6,7 @@ on: [pull_request, push]
 env:
   ## Sets environment variable
   GH_K: ${{ secrets.GH_K }}
-  
+
 jobs:
   job1:
     ## The type of runner that the job will run on
@@ -14,4 +14,4 @@ jobs:
     steps:
       - name: step 1
         ## Reference your environment variables
-        run: echo "The API key is:${{secrets.API_KEY}}"
+        run: echo "The API key is:${{secrets.GH_K}}"
