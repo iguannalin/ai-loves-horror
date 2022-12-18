@@ -6,12 +6,6 @@ let colors = {
     // overlay: '255, 255, 255, 0.3',
 };
 
-let sizes = {
-    small: 20,
-    regular: 24,
-    large: 48
-};
-
 let prompt = "write a text-based horror adventure prompt, with 2-3 choices numbered";
 let test = `write a text-based horror adventure prompt, with 2-3 choices numbered
 
@@ -59,10 +53,9 @@ let chindex = 1;
 let frindex = 30;
 let isLoading = true;
 let isKeyPressed = false;
-let isTesting = false;
+let isTesting = true;
 let isGlitching = 7;
 let saveButton, refreshButton, readmeButton;
-let iconDescriptions = ["Save", "Replay", "About"];
 
 function preload() {
     getAICompletion();
@@ -85,7 +78,7 @@ function preload() {
     readmeButton.attribute("title", "Click to read more about this project.");
     readmeButton.class("ninetyfive-button");
     readmeButton.mousePressed(() => {
-        open("https://iguannalin.github.io/ai-loves-horror/");
+        open("https://github.com/iguannalin/ai-loves-horror");
     });
 
     [saveButton, refreshButton, readmeButton].forEach((btn) => { btn.hide(); });
@@ -100,11 +93,11 @@ function draw() {
     if (!storyText || isLoading) {
         background(colors.overlay);
         push();
-            fill(colors.accent);
-            textSize(sizes.regular);
-            textAlign(CENTER);
-            translate(width/2, height - 50);
-            text("Loading...", 0, 0);
+        fill(colors.accent);
+        textSize(16);
+        textAlign(CENTER);
+        translate(width/2, height - 50);
+        text("Loading...", 0, 0);
         pop();
         return;
     }
@@ -121,36 +114,28 @@ function draw() {
     let story = storyText.replace(prompt, "Type 1, 2, or 3 on the keyboard to continue the story.");
     textWrap(WORD);
     textFont("Times New Roman");
-    textSize(sizes.large);
+    textSize(20);
     textAlign(LEFT, BOTTOM);
     text(story.substring(0, chindex), 60, 0, width > 600 ? pWidth : width - 60, pHeight);
     if (chindex < story.length) {
         chindex++;
         drawGlitch();
-        frameRate(random(10, frindex += 0.2));
+        frameRate(random(20, frindex += 0.2));
     }
     if (Object.keys(choices).length < 1 || isTesting) {
         push();
-            fill(colors.accent);
-            textSize(sizes.regular);
-            textAlign(CENTER);
-            translate(width/2, height - 70);
-            text("\nThere are no choices left.", 0, 0);
+        fill(colors.accent);
+        textSize(16);
+        textAlign(CENTER);
+        translate(width/2, height - 50);
+        text("\nThere are no choices left.", 0, 0);
         pop();
         let btnX = 150;
-        let btns = [saveButton, refreshButton, readmeButton];
-        push();
-            fill(colors.accent);
-            textSize(sizes.small);
-            textAlign(CENTER);
-            for (let i = 0; i < 3; i++) {
-                let btn = btns[i];
-                btn.position(((width*3)/5) + btnX, height - 100);
-                text(iconDescriptions[i], ((width*3)/5) + btnX + 10, height - 30);
-                btnX += 90;
-                btn.show();
-            }
-        pop();
+        [saveButton, refreshButton, readmeButton].forEach((btn) => {
+            btn.position((width/2) + btnX, height - 70);
+            btnX += 60;
+            btn.show();
+        });
     }
     // frameRate(100);
 }
@@ -225,11 +210,11 @@ function keyPressed() {
         isKeyPressed = true;
         storyText += "\n\n" + newPrompt + "\n";
         push();
-            fill(colors.accent);
-            textSize(sizes.regular);
-            textAlign(CENTER);
-            translate(width/2, height - 75);
-            text(newPrompt, 0, 0);
+        fill(colors.accent);
+        textSize(16);
+        textAlign(CENTER);
+        translate(width/2, height - 75);
+        text(newPrompt, 0, 0);
         pop();
         getAICompletion();
     }
