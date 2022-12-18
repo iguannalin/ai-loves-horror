@@ -172,7 +172,7 @@ function getAICompletion() {
         headers: {
             "Content-Type": "application/json",
             Authorization:
-                `Bearer ${process.env.GH_K}`,
+                `Bearer sess-LIrnnnRj9XW9C1tuVRdCiKZVCSJYCle2p9WaCpQK`,
         },
         body: JSON.stringify({
             model: "text-davinci-003",
