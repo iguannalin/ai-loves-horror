@@ -55,8 +55,8 @@ You slowly move around the room, searching for the source of the laugh. You fina
 let choices = {};
 let incoming;
 let storyText;
-let chindex = 1;
-let frindex = 30;
+let chindex = 1; // character index
+let frindex = 30; // frame index
 let isLoading = true;
 let isKeyPressed = false;
 let isTesting = false;
@@ -118,7 +118,7 @@ function draw() {
     let padding = width / 5;
     let pWidth = width - padding;
     let pHeight = height - padding;
-    let story = storyText.replace(prompt, "Type 1, 2, or 3 on the keyboard to continue the story.");
+    let story = storyText.replace(prompt, "Type 1, 2, or 3 on the keyboard to continue the story."); // TODO
     textWrap(WORD);
     textFont("Times New Roman");
     textSize(sizes.large);
@@ -221,7 +221,7 @@ function keyPressed() {
             break;
     }
     // print(prompt);
-    if (newPrompt) {
+    if (newPrompt) { // if user chose a valid choice, add choice to current story and send it back to API
         isKeyPressed = true;
         storyText += "\n\n" + newPrompt + "\n";
         push();
@@ -242,7 +242,7 @@ function getChoices(inText) {
     for (let i = 1; i < 4; i++) {
         if (spl[i]) choices[i] = spl[i];
     }
-    print({ choices });
+    // print({ choices });
 }
 
 function drawGlitch() {
