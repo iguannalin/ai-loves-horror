@@ -210,10 +210,20 @@ function keyPressed() {
         case 49:
             if (choices[1]) newPrompt = choices[1];
             break;
+        case 97:
+            if (choices[1]) newPrompt = choices[1];
+            break;
         case 50:
             if (choices[2]) newPrompt = choices[2];
             break;
+        case 98:
+            if (choices[2]) newPrompt = choices[2];
+            break;
         case 51:
+            if (choices[3]) newPrompt = choices[3];
+            else alert("please choose a valid choice");
+            break;
+        case 99:
             if (choices[3]) newPrompt = choices[3];
             else alert("please choose a valid choice");
             break;
