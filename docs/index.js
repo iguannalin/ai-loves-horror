@@ -193,7 +193,6 @@ function getAICompletion() {
             incoming = storyText ? _text.substring(storyText.length) : _text;
             getChoices(incoming); // get choices from most recent text
             storyText = _text;
-            chindex = 1;
             isLoading = false;
             isKeyPressed = false;
             // print({ storyText });
