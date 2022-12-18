@@ -68,7 +68,7 @@ function preload() {
     getAICompletion();
     // Windows icons from https://win98icons.alexmeub.com/
     saveButton = createImg("https://win98icons.alexmeub.com/icons/png/printer-0.png", "printer icon");
-    saveButton.attribute("title", "Click to save adventure as image file.");
+    saveButton.attribute("title", "Click to save adventure as text file.");
     saveButton.class("ninetyfive-button");
     saveButton.mousePressed(() => {
         saveStrings(storyText.replace(prompt, "Type 1, 2, or 3 on the keyboard to continue the story.").split("/n"), 'ai-loves-horror-adventure.txt');
