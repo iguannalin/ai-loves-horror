@@ -9,6 +9,10 @@ h1, h2 {
     color: black;
 }
 
+.start-button-container {
+    height: 125px;
+}
+
 .ninetyfive-button {
     border: none;
     width: auto;
