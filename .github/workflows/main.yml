@@ -14,4 +14,4 @@ jobs:
     steps:
       - name: step 1
         ## Reference your environment variables
-        run: echo "The API key is:${{secrets.GH_K}}"
+        run: echo "The ghk is:${{env.GH_K}}"
