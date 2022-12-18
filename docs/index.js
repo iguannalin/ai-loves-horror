@@ -85,7 +85,7 @@ function preload() {
     readmeButton.attribute("title", "Click to read more about this project.");
     readmeButton.class("ninetyfive-button");
     readmeButton.mousePressed(() => {
-        open("https://iguannalin.github.io/ai-loves-horror/");
+        open("https://iguannalin.github.io/ai-loves-horror/about.html");
     });
 
     [saveButton, refreshButton, readmeButton].forEach((btn) => { btn.hide(); });
