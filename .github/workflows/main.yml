@@ -1,0 +1,8 @@
+name: env_push
+## Triggers the workflow on when there is a push, or
+## pull request on the main branch
+on: [pull_request, push]
+
+env:
+  ## Sets environment variable
+  GH_K: ${{ secrets.GH_K }}
