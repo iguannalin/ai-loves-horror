@@ -63,6 +63,7 @@ let isTesting = false;
 let isGlitching = 7;
 let saveButton, refreshButton, readmeButton;
 let iconDescriptions = ["Save", "Replay", "About"];
+let instructions = "Use the 1, 2, or 3 keys on the keyboard to select a choice when they appear."
 
 function preload() {
     getAICompletion();
@@ -71,7 +72,7 @@ function preload() {
     saveButton.attribute("title", "Click to save adventure as text file.");
     saveButton.class("ninetyfive-button");
     saveButton.mousePressed(() => {
-        saveStrings(storyText.replace(prompt, "Type 1, 2, or 3 on the keyboard to continue the story.").split("/n"), 'ai-loves-horror-adventure.txt');
+        saveStrings(storyText.replace(prompt, instructions).split("/n"), 'ai-loves-horror-adventure.txt');
     });
 
     refreshButton = createImg("https://win98icons.alexmeub.com/icons/png/netmeeting-0.png", "refresh icon");
@@ -118,7 +119,7 @@ function draw() {
     let padding = width / 5;
     let pWidth = width - padding;
     let pHeight = height - padding;
-    let story = storyText.replace(prompt, "Type 1, 2, or 3 on the keyboard to continue the story."); // TODO
+    let story = storyText.replace(prompt, instructions); // TODO
     textWrap(WORD);
     textFont("Times New Roman");
     textSize(sizes.large);
