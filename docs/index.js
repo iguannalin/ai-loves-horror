@@ -69,10 +69,11 @@ function preload() {
     getAICompletion();
     // Windows icons from https://win98icons.alexmeub.com/
     saveButton = createImg("https://win98icons.alexmeub.com/icons/png/printer-0.png", "printer icon");
-    saveButton.attribute("title", "Click to save adventure as text file.");
+    saveButton.attribute("title", "Click to email adventure as text file.");
     saveButton.class("ninetyfive-button");
     saveButton.mousePressed(() => {
-        saveStrings(storyText.replace(prompt, instructions).split("/n"), 'ai-loves-horror-adventure.txt');
+        // window.open('mailto:test@example.com?subject=subject&body=body');
+        saveStrings(storyText.replace(prompt, "ai-loves-horror").split("/n"), 'ai-loves-horror-adventure.txt');
     });
 
     refreshButton = createImg("https://win98icons.alexmeub.com/icons/png/netmeeting-0.png", "refresh icon");
@@ -119,7 +120,7 @@ function draw() {
     let padding = width / 5;
     let pWidth = width - padding;
     let pHeight = height - padding;
-    let story = storyText.replace(prompt, instructions); // TODO
+    let story = storyText.replace(prompt, instructions);
     textWrap(WORD);
     textFont("Times New Roman");
     textSize(sizes.large);
