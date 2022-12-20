@@ -63,7 +63,7 @@ let isTesting = false;
 let isGlitching = 7;
 let saveButton, refreshButton, readmeButton;
 let iconDescriptions = ["Save", "Replay", "About"];
-let instructions = "Use the 1, 2, or 3 keys on the keyboard to select a choice when they appear."
+let instructions = "Use the 1, 2, or 3 keys on the keyboard to select a choice when they appear.";
 
 function preload() {
     getAICompletion();
