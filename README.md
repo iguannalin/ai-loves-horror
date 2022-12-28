@@ -1,6 +1,6 @@
 # ai-loves-horror
 
-[Blog write-up here](https://annaylin.notion.site/ai-loves-horror-Winter-Show-7298b61fd37d40a9b93778572fbce217)
+[Blog write-up](https://annaylin.notion.site/ai-loves-horror-Winter-Show-7298b61fd37d40a9b93778572fbce217)
 
 A horror text-based adventure game made using OpenAI's GPT-3 (Davinci model) API.
 
