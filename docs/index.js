@@ -250,10 +250,11 @@ function keyPressed() {
 function getChoices(inText) {
     if (!inText) return;
     choices = {};
-    let spl = inText.split(/\n[1-3][.]*/g);
+    let spl = inText.split(/\n[1-3][.]*/g); // capture the string after [1-3].
     for (let i = 1; i < 4; i++) {
-        if (spl[i]) choices[i] = spl[i];
+        if (spl[i]) choices[i] = spl[i]; // if it exists assign it to choices
     }
+    if (!choices[1] || !choices[2]) location.reload(); // if there are no choices 1-2, reload sketch
     // print({ choices });
 }
 
